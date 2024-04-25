@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import { ToastContainer, Flip,toast } from 'react-toastify';
+import { ToastContainer, Flip, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Register = () => {
 
@@ -29,9 +29,49 @@ const Register = () => {
             });
         }
 
+        if (!/^(?=.*[a-z])(?=.*[A-Z]).+$/.test(password)) {
+            return toast.error('You must have an uppercase and a lowercase letter in your password', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Flip,
+            });
+        }
+
         createUser(email, password)
-            .then(res => console.log(res.user))
-            .catch(err => console.log(err))
+            .then(res => {
+                toast.success('Registration Successful', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Flip,
+                });
+                console.log(res.user)
+            })
+            .catch(err => {
+                toast.error('Email already in use please try with another email', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Flip,
+                });
+                console.error(err)
+            })
 
     }
 

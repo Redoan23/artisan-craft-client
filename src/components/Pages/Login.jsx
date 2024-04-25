@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { ToastContainer, Flip, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
-    const { loginUser } = useContext(AuthContext)
+    const { loginUser, googleLogin, githubLogin } = useContext(AuthContext)
 
 
     const handleLogin = e => {
@@ -14,12 +16,96 @@ const Login = () => {
         const password = form.password.value
 
         loginUser(email, password)
-        .then(res=>{
-            console.log(res)
-            alert(`login successful with user : ${res.user}`)
-        })
-        .catch(err=>console.log(err))
+            .then(res => {
+                toast.success('Login Successful', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Flip,
+                });
+                console.log(res)
 
+            })
+            .catch(err => {
+                toast.error('Login Failed, Invalid Credential', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Flip,
+                });
+                console.log(err)
+            })
+
+    }
+
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(res => {
+                toast.success('Login Successful', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Flip,
+                });
+            })
+            .catch(err => {
+                toast.error(`${err.message}`, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Flip,
+                });
+            })
+    }
+
+    const handleGitLogin = () => {
+        githubLogin()
+            .then(res => {
+                toast.success('Login Successful', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Flip,
+                });
+            })
+            .catch(err => {
+                toast.error(`${err.message}`, {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Flip,
+                });
+            })
     }
 
     return (
@@ -54,8 +140,8 @@ const Login = () => {
                             <div className=' text-center'>
                                 <h1>or login with social</h1>
                                 <div className='flex gap-3 justify-center'>
-                                    <Link className=' font-semibold'>GOOGLE</Link>
-                                    <Link className=' font-semibold'>GITHUB</Link>
+                                    <Link onClick={handleGoogleLogin} className=' font-semibold'>GOOGLE</Link>
+                                    <Link onClick={handleGitLogin} className=' font-semibold'>GITHUB</Link>
                                 </div>
                             </div>
                             <div>
@@ -65,6 +151,19 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+                transition:Flip
+            />
         </div>
     );
 };
