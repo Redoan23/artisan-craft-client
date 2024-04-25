@@ -1,7 +1,16 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import 'sweetalert2/src/sweetalert2.scss'
+import Tooltip from '@mui/material/Tooltip';
 
+
+// const MySwal = withReactContent(Swal)
 const Nav = () => {
+
+    const { user, logout } = useContext(AuthContext)
 
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
@@ -10,6 +19,16 @@ const Nav = () => {
         <li><NavLink to={'/myartandcraft'}>My Art&Craft List</NavLink></li>
 
     </>
+
+    const handleLogout = () => {
+        logout()
+        Swal.fire({
+            title: 'Successfully Logged Out!',
+            text: 'Continue Browsing',
+            icon: 'success',
+            confirmButtonText: 'okay'
+        })
+    }
 
     return (
         <div className="navbar bg-base-100">
@@ -29,9 +48,21 @@ const Nav = () => {
                     {links}
                 </ul>
             </div>
-            <div className="navbar-end gap-2">
-                 <NavLink className={'btn'}  to={'/login'}>Login</NavLink>
-                 <NavLink className={'btn'} to={'/register'}>Register</NavLink>
+            <div className="navbar-end">
+                {user ?
+                    <div className=' flex gap-3 items-center'>
+                        <Tooltip title={user.displayName}>
+                            <div className=' w-10 rounded-full'>
+                                <img className='rounded-full' src={user.photoURL} alt="" />
+                            </div>
+                        </Tooltip>
+                        <Link onClick={handleLogout} className={'btn'}>Logout</Link>
+                    </div>
+                    :
+                    <div className=' flex gap-2'>
+                        <NavLink className={'btn'} to={'/login'}>Login</NavLink>
+                        <NavLink className={'btn'} to={'/register'}>Register</NavLink>
+                    </div>}
             </div>
         </div>
     );
