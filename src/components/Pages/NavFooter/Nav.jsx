@@ -5,7 +5,8 @@ import Swal from 'sweetalert2'
 // import withReactContent from 'sweetalert2-react-content'
 import 'sweetalert2/src/sweetalert2.scss'
 import Tooltip from '@mui/material/Tooltip';
-import { CiFaceSmile } from "react-icons/ci";
+import './nav.css'
+
 
 // const MySwal = withReactContent(Swal)
 const Nav = () => {
@@ -32,7 +33,7 @@ const Nav = () => {
     }
 
     return (
-        <div className="navbar bg-yellow-100 border-0">
+        <div className="navbar bg-orange-200 border-0">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -42,7 +43,7 @@ const Nav = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-3xl font-bold">Artisan's Forge</a>
+                <a className="btn btn-ghost text-white text-3xl font-bold">Artisan's Forge</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

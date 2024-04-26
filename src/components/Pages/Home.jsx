@@ -58,9 +58,9 @@ const Home = () => {
                 </Swiper>
             </div>
 
-            <div>
+            <div className=' mt-24'>
                 <div>
-                    
+                    <h3 className=' text-center font-bold text-5xl text-red-600'>CRAFTED ITEMS</h3>
                 </div>
             </div>
         </div>
