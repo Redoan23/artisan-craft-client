@@ -2,15 +2,16 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+// import withReactContent from 'sweetalert2-react-content'
 import 'sweetalert2/src/sweetalert2.scss'
 import Tooltip from '@mui/material/Tooltip';
-
+import { CiFaceSmile } from "react-icons/ci";
 
 // const MySwal = withReactContent(Swal)
 const Nav = () => {
 
     const { user, logout } = useContext(AuthContext)
+    console.log(user)
 
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
@@ -31,7 +32,7 @@ const Nav = () => {
     }
 
     return (
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-yellow-100 border-0">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -52,11 +53,11 @@ const Nav = () => {
                 {user ?
                     <div className=' flex gap-3 items-center'>
                         <Tooltip title={user.displayName}>
-                            <div className=' w-10 rounded-full'>
+                            {user.photoURL ? <div className=' w-10 border rounded-full'>
                                 <img className='rounded-full' src={user.photoURL} alt="" />
-                            </div>
+                            </div> : <div className='w-10 rounded-full'><img src='./user_847969.png' alt="" /></div>}
                         </Tooltip>
-                        <Link onClick={handleLogout} className={'btn'}>Logout</Link>
+                        <Link onClick={handleLogout} className={'btn rounded-none bg-red-400 text-white hover:bg-transparent hover:border-2 hover:border-red-400 hover:text-red-400'}>Logout</Link>
                     </div>
                     :
                     <div className=' flex gap-2'>

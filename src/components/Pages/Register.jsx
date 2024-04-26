@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { ToastContainer, Flip, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { updateProfile } from 'firebase/auth';
 const Register = () => {
 
-    const { createUser } = useContext(AuthContext)
+    const { createUser, user } = useContext(AuthContext)
 
     const handleRegister = e => {
         e.preventDefault()
@@ -56,7 +57,11 @@ const Register = () => {
                     theme: "colored",
                     transition: Flip,
                 });
-                console.log(res.user)
+                updateProfile(res.user, {
+                    displayName: name,
+                    photoURL: photoURL
+                })
+
             })
             .catch(err => {
                 toast.error('Email already in use please try with another email', {
@@ -73,7 +78,9 @@ const Register = () => {
                 console.error(err)
             })
 
+        
     }
+
 
     return (
         <div>
@@ -101,7 +108,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input type="text" placeholder="Photo url" name='photoURL' className="input input-bordered" required />
+                                <input type="text" placeholder="Photo url" name='photoURL' className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
