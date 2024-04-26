@@ -4,11 +4,12 @@ import SwiperCore from 'swiper';
 import 'swiper/css';
 import 'swiper/css/bundle'
 import { EffectFade, Autoplay } from 'swiper/modules';
+import { useLoaderData } from 'react-router-dom';
 SwiperCore.use([Autoplay]);
-
-import { AuthContext } from '../../AuthProvider/AuthProvider';
 const Home = () => {
-    const { name } = useContext(AuthContext)
+    const data = useLoaderData()
+    console.log(data)
+    const { name, email, photo, itemName, subcategoryName, description, price, rating, customization, status, processingTime } = data
     return (
         <div className=' '>
             <div className=' flex justify-center items-center'>
@@ -59,8 +60,29 @@ const Home = () => {
             </div>
 
             <div className=' mt-24'>
-                <div>
-                    <h3 className=' text-center font-bold text-5xl text-red-600'>CRAFTED ITEMS</h3>
+                <div className=' bg-gradient-to-tr from-orange-100 to-white'>
+                    <h3 className=' text-center font-bold text-5xl text-red-600 pt-16'>CRAFTED ITEMS</h3>
+                    <div className=' flex items-center mt-10 '>
+                        <div>
+                            <h1 className=' text-5xl text-red-400 font-bold '> Have a Look on Our Products</h1>
+                        </div>
+                        <div className=' grid grid-cols-2 h-[600px] overflow-auto gap-6 mx-auto place-items-center'>
+                            {
+                                data.map(art => <div>
+                                    <div className="card rounded-none w-96 bg-base-100 shadow-xl">
+                                        <div className=' overflow-hidden'><figure><img src={art.photo} alt="" /></figure></div>
+                                        <div className="card-body">
+                                            <h2 className="card-title">{art.itemName}</h2>
+                                            <p>{art.description}</p>
+                                            <div className="card-actions justify-end">
+                                                <button className=" px-3 py-2 bg-red-500 text-white ">Show Details</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>)
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

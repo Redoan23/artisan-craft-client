@@ -1,9 +1,62 @@
 import React from 'react';
+import Swal from 'sweetalert2'
+import 'sweetalert2/src/sweetalert2.scss'
 
 const AddCraftItems = () => {
+
+    const handleCraftSubmit = e => {
+        e.preventDefault()
+        const form = e.target
+        const name = form.user_name.value
+        const email = form.user_email.value
+        const photo = form.image.value
+        const itemName = form.item_name.value
+        const subcategoryName = form.subcategory_Name.value
+        const description = form.short_description.value
+        const price = form.price.value
+        const rating = form.rating.value
+        const customization = form.customization.value
+        const status = form.stockStatus.value
+        const processingTime = form.processing_time.value
+
+        console.log(name,
+            email,
+            photo,
+            itemName,
+            subcategoryName,
+            description,
+            price,
+            rating,
+            customization,
+            status,
+            processingTime,)
+
+        const formData = { name, email, photo, itemName, subcategoryName, description, price, rating, customization, status, processingTime }
+
+
+        fetch('http://localhost:5000/', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                Swal.fire({
+                    title: 'Successfully Added Data!',
+                    text: 'Continue',
+                    icon: 'success',
+                    confirmButtonText: 'okay'
+                })
+                console.log(data)
+            })
+
+    }
+
     return (
         <div>
-            <form className=' bg-orange-100 p-3 lg:p-14 flex flex-col justify-center gap-4'>
+            <form onSubmit={handleCraftSubmit} className=' bg-orange-100 p-3 lg:p-14 flex flex-col justify-center gap-4'>
                 <div className=' flex gap-2'>
 
 
@@ -21,7 +74,7 @@ const AddCraftItems = () => {
                 <div className=' flex gap-2'>
                     <div className=' w-1/2'>
                         <label for="image">Image URL:</label>
-                        <input placeholder='image url' className='p-2 w-full' type="url" id="image" name="image" />
+                        <input placeholder='image url' className='p-2 w-full' type="text" id="image" name="image" />
                     </div>
 
                     <div className=' w-1/2'>

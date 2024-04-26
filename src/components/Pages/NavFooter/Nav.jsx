@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
-// import withReactContent from 'sweetalert2-react-content'
 import 'sweetalert2/src/sweetalert2.scss'
 import Tooltip from '@mui/material/Tooltip';
 import './nav.css'
