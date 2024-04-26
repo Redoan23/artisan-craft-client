@@ -6,6 +6,10 @@ import Root from "../Pages/Root";
 import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import AllArt from "../Pages/AllArt";
+import MyArtandCraftList from "../Pages/MyArtandCraftList";
+import AddCraftItems from "../Pages/AddCraftItems";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -18,12 +22,24 @@ const router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-               path:'/login',
-               element:<Login></Login> 
+                path: '/login',
+                element: <Login></Login>
             },
             {
-                path:'/register',
-                element:<Register></Register>
+                path: '/register',
+                element: <Register></Register>
+            },
+            {
+                path: '/allart',
+                element: <AllArt></AllArt>
+            },
+            {
+                path: '/myartandcraft',
+                element: <PrivateRoute><MyArtandCraftList></MyArtandCraftList></PrivateRoute>
+            },
+            {
+                path: '/addcraft',
+                element: <PrivateRoute><AddCraftItems></AddCraftItems></PrivateRoute>
             }
         ]
     },
