@@ -61,7 +61,7 @@ const Home = () => {
 
             <div className=' mt-24'>
                 <div className=' bg-gradient-to-tr from-orange-100 to-white'>
-                    <h3 className=' text-center font-bold text-5xl text-red-600 pt-16'>CRAFTED ITEMS</h3>
+                    <h3 className=' text-center font-bold text-5xl text-red-400 pt-16'>CRAFTED ITEMS</h3>
                     <div className=' flex items-center mt-10 '>
                         <div>
                             <h1 className=' text-5xl text-red-400 font-bold '> Have a Look on Our Products</h1>
