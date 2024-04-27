@@ -1,17 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
-import { AuthContext } from '../../AuthProvider/AuthProvider';
 
-const AddCraftItems = () => {
+const Update = () => {
+    const { id } = useParams()
 
-    const {user}=useContext(AuthContext)
-
-    const handleCraftSubmit = e => {
+    const handleUpdateForm = e => {
         e.preventDefault()
         const form = e.target
-        const name = form.user_name.value
-        const email = form.user_email.value
         const photo = form.image.value
         const itemName = form.item_name.value
         const subcategoryName = form.subcategory_Name.value
@@ -20,59 +17,34 @@ const AddCraftItems = () => {
         const rating = form.rating.value
         const customization = form.customization.value
         const status = form.stockStatus.value
-        const processingTime = form.processing_time.value
 
-        // console.log(name,
-        //     email,
-        //     photo,
-        //     itemName,
-        //     subcategoryName,
-        //     description,
-        //     price,
-        //     rating,
-        //     customization,
-        //     status,
-        //     processingTime,)
-
-        const formData = { name, email, photo, itemName, subcategoryName, description, price, rating, customization, status, processingTime }
+        const updateData = { photo, itemName, subcategoryName, description, price, rating, customization, status }
 
 
-        fetch('http://localhost:5000/', {
-            method: 'POST',
+        fetch(`http://localhost:5000/artisan/${id}`, {
+            method: 'PUT',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify(formData)
+            body: JSON.stringify(updateData)
         })
             .then(res => res.json())
-            .then(data => {
-                Swal.fire({
-                    title: 'Successfully Added Data!',
-                    text: 'Continue',
-                    icon: 'success',
-                    confirmButtonText: 'okay'
-                })
+            .then(latest => {
+                if (latest.modifiedCount > 0) {
+                    Swal.fire({
+                        title: 'Modification Successful!',
+                        text: 'Continue Browsing',
+                        icon: 'success',
+                        confirmButtonText: 'okay'
+                    })
+                }
+                console.log(latest)
             })
 
     }
-
     return (
         <div>
-            <form onSubmit={handleCraftSubmit} className=' bg-orange-100 p-3 lg:p-14 flex flex-col justify-center gap-4'>
-                <div className=' flex gap-2'>
-
-
-                    <div className=' w-1/2'>
-                        <label for="user_name">User Name:</label>
-                        <input placeholder='name' className=' p-2 w-full' type="text" id="user_name" name="user_name" />
-                    </div>
-
-                    <div className=' w-1/2'>
-                        <label for="user_email">User Email:</label>
-                        <input placeholder='email' className=' p-2 w-full' type="email" id="user_email" defaultValue={`${user.email}`} name="user_email" />
-                    </div>
-
-                </div>
+            <form onSubmit={handleUpdateForm} className=' bg-orange-100 p-3 lg:p-14 flex flex-col justify-center gap-4'>
                 <div className=' flex gap-2'>
                     <div className=' w-1/2'>
                         <label for="image">Image URL:</label>
@@ -126,17 +98,11 @@ const AddCraftItems = () => {
                     </div>
 
                 </div>
-                <div className=' w-full'>
-                    <label for="processing_time">Processing Time:</label>
-                    <input placeholder=' processing time' className='p-2 w-full' type="text" id="processing_time" name="processing_time" />
-                </div>
 
-
-
-                <button className=' w-full text-white bg-red-400 p-2 my-2' type="submit">Add Item</button>
+                <button className=' w-full text-white bg-red-400 p-2 my-2' type="submit">Update Item</button>
             </form >
-        </div >
+        </div>
     );
 };
 
-export default AddCraftItems;
+export default Update;

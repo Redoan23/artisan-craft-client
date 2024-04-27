@@ -4,7 +4,7 @@ import SwiperCore from 'swiper';
 import 'swiper/css';
 import 'swiper/css/bundle'
 import { EffectFade, Autoplay } from 'swiper/modules';
-import { useLoaderData } from 'react-router-dom';
+import { Link, Navigate, useLoaderData } from 'react-router-dom';
 SwiperCore.use([Autoplay]);
 const Home = () => {
     const data = useLoaderData()
@@ -66,16 +66,16 @@ const Home = () => {
                         <div>
                             <h1 className=' text-5xl text-red-400 font-bold '> Have a Look on Our Products</h1>
                         </div>
-                        <div className=' grid grid-cols-2 h-[600px] overflow-auto gap-6 mx-auto place-items-center'>
+                        <div className=' grid grid-cols-2 h-[600px] overflow-auto overflow-x-hidden overflow-y-auto gap-6 mx-auto place-items-center'>
                             {
                                 data.map(art => <div>
                                     <div className="card rounded-none w-96 bg-base-100 shadow-xl">
-                                        <div className=' overflow-hidden'><figure><img src={art.photo} alt="" /></figure></div>
+                                        <div className=' overflow-hidden '><figure><img src={art.photo} alt="" /></figure></div>
                                         <div className="card-body">
                                             <h2 className="card-title">{art.itemName}</h2>
                                             <p>{art.description}</p>
                                             <div className="card-actions justify-end">
-                                                <button className=" px-3 py-2 bg-red-500 text-white ">Show Details</button>
+                                                <Link to={`/itemdetails/${art._id}`}> <button className=" px-3 py-2 bg-red-500 text-white">Show Details</button></Link>
                                             </div>
                                         </div>
                                     </div>

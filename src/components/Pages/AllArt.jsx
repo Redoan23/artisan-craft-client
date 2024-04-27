@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const AllArt = () => {
     const data = useLoaderData()
@@ -25,7 +25,7 @@ const AllArt = () => {
                             <td>{details.email}</td>
                             <td>{details.itemName}</td>
                             <td className=' hidden lg:block'>{details.rating}</td>
-                            <td><button className=' px-1 lg:px-3 py-2 bg-red-400 text-white' >View Details</button></td>
+                            <td><Link to={`/itemdetails/${details._id}`}><button className=' px-1 lg:px-3 py-2 bg-red-400 text-white' >View Details</button></Link></td>
                         </tr>)}
                     </tbody>
                 </table>
