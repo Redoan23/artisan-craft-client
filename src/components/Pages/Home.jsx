@@ -8,8 +8,7 @@ import { Link, Navigate, useLoaderData } from 'react-router-dom';
 SwiperCore.use([Autoplay]);
 const Home = () => {
     const data = useLoaderData()
-    console.log(data)
-    const { name, email, photo, itemName, subcategoryName, description, price, rating, customization, status, processingTime } = data
+    // const { name, email, photo, itemName, subcategoryName, description, price, rating, customization, status, processingTime } = data
     return (
         <div className=' '>
             <div className=' flex justify-center items-center'>
@@ -68,7 +67,7 @@ const Home = () => {
                         </div>
                         <div className=' grid grid-cols-2 h-[600px] overflow-auto overflow-x-hidden overflow-y-auto gap-6 mx-auto place-items-center'>
                             {
-                                data.map(art => <div>
+                                data.map(art => <div key={art._id}>
                                     <div className="card rounded-none w-96 bg-base-100 shadow-xl">
                                         <div className=' overflow-hidden '><figure><img src={art.photo} alt="" /></figure></div>
                                         <div className="card-body">
