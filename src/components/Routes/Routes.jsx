@@ -12,11 +12,13 @@ import AddCraftItems from "../Pages/AddCraftItems";
 import PrivateRoute from "./PrivateRoute";
 import ItemDetails from "../Pages/ItemDetails";
 import Update from "../Pages/Update";
+import Error from "../Pages/Error";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Root></Root>,
+        errorElement: <Error></Error>,
 
         children: [
             {
