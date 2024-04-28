@@ -9,6 +9,7 @@ import { EffectFade, Autoplay } from 'swiper/modules';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Marquee from "react-fast-marquee";
 
 
 SwiperCore.use([Autoplay]);
@@ -124,7 +125,6 @@ const Home = () => {
                 <h1 className=' text-center text-5xl font-bold text-red-500 my-14'> OUR SPECIAL COLLECTIONS</h1>
                 <div className='relative bg-[url("https://i.ibb.co/KGmywK8/pottery-form-unsplash.jpg")] h-[1000px] bg-center'>
                     <div>
-
                         <div className=' flex gap-5 '>
                             <div className=" absolute left-[9%] top-[20%] hover:-translate-y-3 duration-500 delay-75 ease-in-out dark:text-black dark:text-opacity-75 card w-96 bg-base-100 shadow-xl rounded-none">
                                 <div className=' overflow-hidden'><figure><img className=' h-64 w-full' src='https://i.ibb.co/F8R7M47/tom-crew-o-Hr-C8-V-XRU4-unsplash.jpg' alt="" /></figure></div>
@@ -145,8 +145,18 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-
                 </div>
+            </div>
+            <div className=' my-28'>
+                <h1 className=' text-center font-bold text-red-500 text-5xl pb-5'>OUR FAKE SPONSORS</h1>
+                <Marquee  >
+                    <div className=' flex gap-60 my-6'>
+                        <div> <img className=' h-10 w-32 ' src="https://www.react-fast-marquee.com/static/media/dell.09332c44.png" alt="" /></div>
+                        <div><img className=' h-10 w-48' src="https://www.react-fast-marquee.com/static/media/microsoft.4a9a93f0.png" alt="" /></div>
+                        <div><img className=' h-10 w-28' src="https://www.react-fast-marquee.com/static/media/ibm.bcec6b9a.png" alt="" /></div>
+                        <div><img className=' h-10 w-24' src="https://www.react-fast-marquee.com/static/media/pennsylvania.8c9f4108.png" alt="" /></div>
+                    </div>
+                </Marquee>
             </div>
             <ToastContainer></ToastContainer>
         </div>
