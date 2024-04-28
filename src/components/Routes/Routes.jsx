@@ -62,7 +62,7 @@ const router = createBrowserRouter([
                 path: '/home/:subcategory',
                 element: <Subcategory></Subcategory>,
                 loader: ({params}) => fetch(`http://localhost:5000/artisan/arts/check/${params.subcategory}`)
-            }
+            },
         ]
     },
 

@@ -7,12 +7,13 @@ const Subcategory = () => {
     console.log(data)
     return (
         <div className=' mt-16'>
-            <h1 className=' text-5xl font-bold text-center space-y-2'>Available Products  for the <br />Subcategory : <span className=' text-red-500'>{subcategory.toUpperCase()}</span></h1>
+            <h1 className=' text-5xl font-bold text-center space-y-2'>SUBCATEGORY : <span className=' text-red-500'>{subcategory.toUpperCase()}</span></h1>
+            <p className=' text-center text-xl font-semibold pt-4'>{data.length} items available for this category</p>
             <div className='mt-14 grid grid-cols-3 gap-5 place-items-center '>
                 {
                     data.map((sub, idx) =>
                         <div key={idx} className=" dark:text-black dark:text-opacity-75 card w-96 bg-base-100 shadow-xl rounded-none">
-                            <div className=' overflow-hidden'><figure><img className=' h-64 w-full' src={sub.photo} alt="" /></figure></div>
+                            <div className='overflow-hidden'><figure><img className='hover:scale-[1.2] duration-[700ms] ease-in-out h-64 w-full' src={sub.photo} alt="" /></figure></div>
                             <div className="card-body">
                                 <h2 className="card-title">{sub.itemName}</h2>
                                 <p>{sub.subcategoryName}</p>
@@ -21,7 +22,7 @@ const Subcategory = () => {
                                 <p>Rating: {sub.rating}</p>
                                 <p>Processing Time: {sub.processingTime}</p>
                             </div>
-                            <Link to={`/itemdetails/${sub._id}`}><button className=' w-full bg-red-500 py-3 text-white'>Show Details</button></Link>
+                            <Link to={`/itemdetails/${sub._id}`}><button className=' hover:text-red-600 duration-500 ease-in-out delay-75 hover:bg-gray-200 w-full bg-red-500 py-3 text-white'>Show Details</button></Link>
                         </div>)
                 }
             </div>
