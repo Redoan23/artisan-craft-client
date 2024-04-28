@@ -25,19 +25,22 @@ const MyArtandCraftList = () => {
                     .then(latestData => {
                         Swal.fire({
                             title: "Deleted!",
-                            text: "Your file has been deleted.",
+                            text: "Your item has been deleted.",
                             icon: "success"
                         });
                         console.log(latestData)
+                        const filteredData = data.filter(uData => uData._id !== _id)
+                        setData(filteredData)
                     })
+
             }
         });
 
 
 
 
-        const filteredData = data.filter(uData => uData._id !== _id)
-        setData(filteredData)
+        // const filteredData = data.filter(uData => uData._id !== _id)
+        // setData(filteredData)
     }
     return (
         <div className=' grid grid-cols-2'>
@@ -58,7 +61,7 @@ const MyArtandCraftList = () => {
                                 </div>
                             </div>
                             <div className=' flex gap-3'>
-                                <button className="px-3 py-1 bg-red-500 text-white">Show Details</button>
+                                <Link to={`/itemdetails/${art._id}`}><button className="px-3 py-1 bg-red-500 text-white">Show Details</button></Link>
                                 <Link to={`/update/${art._id}`}><button className="px-3 py-1 bg-red-500 text-white">Update</button></Link>
                                 <button title='delete' onClick={() => handleDelete(art._id)} className="px-3 py-1 bg-red-500 text-white">X</button>
                             </div>

@@ -54,9 +54,25 @@ const AuthProvider = ({ children }) => {
 
 
 
+    const [theme, setTheme] = useState("light")
+
+    useEffect(() => {
+        if (theme === "dark") {
+            document.documentElement.classList.add('dark')
+        }
+        if (theme === "light") {
+            document.documentElement.classList.remove('dark')
+        }
+    }, [theme])
+
+    const handleTheme = () => {
+        setTheme(theme === "dark" ? "light" : "dark")
+
+    }
 
 
-    const authInfo = { user, createUser, loginUser, googleLogin, githubLogin, logout, loading, }
+
+    const authInfo = { user, createUser, loginUser, googleLogin, githubLogin, logout, loading, handleTheme, theme }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

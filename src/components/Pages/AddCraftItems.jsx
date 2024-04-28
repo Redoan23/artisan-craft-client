@@ -5,7 +5,7 @@ import { AuthContext } from '../../AuthProvider/AuthProvider';
 
 const AddCraftItems = () => {
 
-    const {user}=useContext(AuthContext)
+    const { user } = useContext(AuthContext)
 
     const handleCraftSubmit = e => {
         e.preventDefault()
@@ -88,7 +88,15 @@ const AddCraftItems = () => {
                 <div className=' flex gap-2'>
                     <div className=' w-1/2' >
                         <label for="subcategory_Name">Subcategory Name:</label>
-                        <input placeholder='subcategory name' className='p-2 w-full' type="text" id="subcategory_Name" name="subcategory_Name" />
+                        {/* <input placeholder='subcategory name' className='p-2 w-full' type="text" id="subcategory_Name" name="subcategory_Name" /> */}
+                        <select className='p-2 w-full' id="subcategory_Name" name="subcategory_Name" >
+                            <option value="Clay-Made Pottery">Clay-Made Pottery</option>
+                            <option value="Stoneware">Stoneware</option>
+                            <option value="Porcelain">Porcelain</option>
+                            <option value="Terra-Cotta">Terra-Cotta</option>
+                            <option value="Ceramics & Architectural">Ceramics & Architectural</option>
+                            <option value="Home Decor Pottery">Home Decor Pottery</option>
+                        </select>
                     </div>
 
                     <div className=' w-1/2'>

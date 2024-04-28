@@ -19,8 +19,8 @@ const AllArt = () => {
                     </thead>
                     <tbody>
                         {/* row 1 */}
-                        {data.map(details => <tr key={details._id}>
-                            <th className=' hidden lg:block'>1</th>
+                        {data.map((details, idx) => <tr key={details._id}>
+                            <th className=' hidden lg:block'>{idx}</th>
                             <td>{details.name}</td>
                             <td>{details.email}</td>
                             <td>{details.itemName}</td>

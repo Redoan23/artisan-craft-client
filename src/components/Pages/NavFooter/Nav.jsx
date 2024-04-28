@@ -5,13 +5,13 @@ import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
 import Tooltip from '@mui/material/Tooltip';
 import './nav.css'
+import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 
 // const MySwal = withReactContent(Swal)
 const Nav = () => {
 
-    const { user, logout } = useContext(AuthContext)
-    console.log(user)
+    const { user, logout, handleTheme, theme } = useContext(AuthContext)
 
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
@@ -32,7 +32,7 @@ const Nav = () => {
     }
 
     return (
-        <div className="navbar bg-orange-200 border-0">
+        <div className="navbar dark:bg-gray-200 bg-orange-200 border-0">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -50,6 +50,11 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+                <div onClick={handleTheme} className='lg:pr-3'>
+                    {
+                        theme === 'light' ? <MdDarkMode className=' h-8 w-8 duration-300 delay-700 ease-in-out' /> : <MdOutlineLightMode className=' h-8 w-8' />
+                    }
+                </div>
                 {user ?
                     <div className=' flex gap-3 items-center'>
                         <Tooltip title={user.displayName}>

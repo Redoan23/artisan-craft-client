@@ -13,6 +13,7 @@ import PrivateRoute from "./PrivateRoute";
 import ItemDetails from "../Pages/ItemDetails";
 import Update from "../Pages/Update";
 import Error from "../Pages/Error";
+import Subcategory from "../Pages/Subcategory";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
             {
                 path: '/update/:id',
                 element: <PrivateRoute><Update></Update></PrivateRoute>
+            },
+            {
+                path: '/home/:subcategory',
+                element: <Subcategory></Subcategory>,
+                loader: ({params}) => fetch(`http://localhost:5000/artisan/arts/check/${params.subcategory}`)
             }
         ]
     },
