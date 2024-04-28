@@ -6,7 +6,8 @@ const ItemDetails = () => {
     console.log(data)
     return (
         <div>
-            <div className=' flex gap gap-4 mt-24'>
+            <div className=' text-center text-5xl font-bold text-red-500 mt-10'>ITEM DETAILS</div>
+            <div className=' flex gap gap-4 mt-20 mb-16'>
                 <div className=' w-1/2'>
                     <img className=' w-full' src={data.photo} alt="" />
                 </div>

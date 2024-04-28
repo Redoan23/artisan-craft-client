@@ -21,19 +21,6 @@ const potteryArray = [
 const Home = () => {
     const data = useLoaderData()
     // const { name, email, photo, itemName, subcategoryName, description, price, rating, customization, status, processingTime } = data
-    const handleCategory = (subName) => {
-        // fetch(`/artisan/arts/check/:${subName}`, {
-        //     method: "GET",
-        //     headers: {
-        //         'content-type': 'application/json'
-        //     },
-        //     body: JSON.stringify(subName)
-        // })
-
-        // .then(res => res.json())
-        // .then(data => console.log(data))
-
-    }
     const navigate = useNavigate()
 
     return (
