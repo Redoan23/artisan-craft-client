@@ -1,34 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 const MyArtandCraftList = () => {
     const loadedData = useLoaderData()
-    // const [filter, setFilter] = useState(loadedData)
-    // const [filteredData, setFilteredData] = useState(filter)
-
-    // const handleFilter = (stat) => {
-
-
-    //     if (stat === 'yes') {
-    //         const filtered = loadedData.filter(data => data.customization === 'yes')
-    //         setFilteredData(filtered)
-    //         console.log(filtered)
-    //     }
-    //     if (stat === 'no') {
-    //         const filtered = loadedData.filter(data => data.customization === 'no')
-    //         setFilteredData(filtered)
-    //         console.log(filtered)
-    //     }
-    //     if (stat === 'none') {
-    //         // const filter = loadedData.filter(data => data.customization === 'yes')
-    //         setFilteredData(loadedData)
-    //     }
-    // }
 
     const [data, setData] = useState(loadedData)
     console.log(data)
+    const [sortingData, setSortingData] = useState([])
+    console.log(sortingData)
+
+    useEffect(() => {
+        setSortingData(loadedData)
+    }, [])
+
+    const handleFilter = (sort) => {
+        if (sort === 'yes') {
+            const filteredData = data.filter(data => data.customization === 'yes')
+            setSortingData(filteredData)
+        }
+        if (sort === 'no') {
+            const filteredData = data.filter(data => data.customization === 'no')
+            setSortingData(filteredData)
+
+        }
+        if (sort === 'none') {
+            setSortingData(loadedData)
+        }
+    }
+
     const handleDelete = (_id) => {
 
         Swal.fire({
@@ -54,6 +55,7 @@ const MyArtandCraftList = () => {
                         });
                         console.log(latestData)
                         const filteredData = data.filter(uData => uData._id !== _id)
+                        setSortingData(filteredData)
                         setData(filteredData)
                     })
 
@@ -65,11 +67,11 @@ const MyArtandCraftList = () => {
             <div>
                 <div className="dropdown flex justify-center my-24">
                     <div>
-                        <div tabIndex={0} role="button" className=" flex items-center gap-1 px-5 py-2 bg-red-500 text-white m-1 ">Sort <MdKeyboardArrowDown /></div>
+                        <div tabIndex={0} role="button" className=" flex items-center gap-1 px-5 py-2 bg-red-500 text-white m-1 ">Sort by Customization <MdKeyboardArrowDown /></div>
 
                         <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                            <li onClick={() => handleFilter('yes')}><a>Yes</a></li>
-                            <li onClick={() => handleFilter('no')}><a>No</a></li>
+                            <li onClick={() => handleFilter('yes')}><a>Customization: Yes</a></li>
+                            <li onClick={() => handleFilter('no')}><a>Customization: No</a></li>
                             <li onClick={() => handleFilter('none')}><a>None</a></li>
                         </ul>
                     </div>
@@ -77,7 +79,7 @@ const MyArtandCraftList = () => {
             </div>
             <div className=' grid grid-cols-2 gap-5'>
                 {
-                    data.map(art => <div key={art._id} className="hero bg-base-200">
+                    sortingData.map(art => <div key={art._id} className="hero bg-base-200">
                         <div className="hero-content border flex-col lg:flex-row">
                             <img src={art.photo} className="max-w-sm rounded-lg shadow-2xl" />
                             <div>

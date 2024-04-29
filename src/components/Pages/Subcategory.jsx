@@ -22,7 +22,7 @@ const Subcategory = () => {
                                 <p>Rating: {sub.rating}</p>
                                 <p>Processing Time: {sub.processingTime}</p>
                             </div>
-                            <Link to={`/itemdetails/${sub._id}`}><button className=' hover:text-red-600 duration-500 ease-in-out delay-75 hover:bg-gray-200 w-full bg-red-500 py-3 text-white'>Show Details</button></Link>
+                            <Link to={`/itemdetails/${sub._id}`}><button className=' hover:text-red-600 duration-500 ease-in-out delay-75 hover:bg-gray-200 w-full bg-red-500 py-3 text-white'>View Details</button></Link>
                         </div>)
                 }
             </div>
