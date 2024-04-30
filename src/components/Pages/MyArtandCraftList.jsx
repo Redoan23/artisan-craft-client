@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { MdKeyboardArrowDown } from "react-icons/md";
+import { Fade } from 'react-awesome-reveal';
 
 const MyArtandCraftList = () => {
     const loadedData = useLoaderData()
@@ -78,31 +79,33 @@ const MyArtandCraftList = () => {
                 </div>
             </div>
             <div className=' grid grid-cols-1 lg:grid-cols-2 gap-9 md:gap-5 pb-10'>
-                {
-                    sortingData.map(art => <div key={art._id} className="hero bg-base-200">
-                        <div className="md:hero-content  flex-col text-center lg:flex-row">
-                            <img src={art.photo} className="md:max-w-sm  rounded-lg shadow-2xl" />
-                            <div>
-                                <h1 className="text-3xl font-bold">{art.itemName}</h1>
-                                <div className=' flex justify-center gap-12'>
-                                    <div>
-                                        <p className="py-6"><span>Price : </span>{art.price}</p>
-                                        <p className="py-6"><span>Rating : </span>{art.rating}</p>
+                <Fade delay={200}>
+                    {
+                        sortingData.map(art => <div key={art._id} className="hero bg-base-200">
+                            <div className="md:hero-content  flex-col text-center lg:flex-row">
+                                <img src={art.photo} className="md:max-w-sm  rounded-lg shadow-2xl" />
+                                <div>
+                                    <h1 className="text-3xl font-bold">{art.itemName}</h1>
+                                    <div className=' flex justify-center gap-12'>
+                                        <div>
+                                            <p className="py-6"><span>Price : </span>{art.price}</p>
+                                            <p className="py-6"><span>Rating : </span>{art.rating}</p>
+                                        </div>
+                                        <div>
+                                            <p className="py-6"><span>Customization : </span>{art.customization}</p>
+                                            <p className="py-6"><span>Stock : </span>{art.status}</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p className="py-6"><span>Customization : </span>{art.customization}</p>
-                                        <p className="py-6"><span>Stock : </span>{art.status}</p>
+                                    <div className=' flex gap-3 justify-center pb-2'>
+                                        <Link to={`/itemdetails/${art._id}`}><button className="px-3 py-1 bg-red-500 text-white">Show Details</button></Link>
+                                        <Link to={`/update/${art._id}`}><button className="px-3 py-1 bg-red-500 text-white">Update</button></Link>
+                                        <button title='delete' onClick={() => handleDelete(art._id)} className="px-3 py-1 bg-red-500 text-white">X</button>
                                     </div>
-                                </div>
-                                <div className=' flex gap-3 justify-center pb-2'>
-                                    <Link to={`/itemdetails/${art._id}`}><button className="px-3 py-1 bg-red-500 text-white">Show Details</button></Link>
-                                    <Link to={`/update/${art._id}`}><button className="px-3 py-1 bg-red-500 text-white">Update</button></Link>
-                                    <button title='delete' onClick={() => handleDelete(art._id)} className="px-3 py-1 bg-red-500 text-white">X</button>
                                 </div>
                             </div>
-                        </div>
-                    </div>)
-                }
+                        </div>)
+                    }
+                </Fade>
 
             </div>
         </div>
