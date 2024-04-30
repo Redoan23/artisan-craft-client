@@ -1,10 +1,10 @@
+import './nav.css'
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
 import Tooltip from '@mui/material/Tooltip';
-import './nav.css'
 import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 
@@ -38,14 +38,14 @@ const Nav = () => {
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3  p-2 z-10 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className=" menu-sm dropdown-content mt-3  p-2 z-10 shadow bg-base-100 rounded-box w-52">
                         {links}
                     </ul>
                 </div>
                 <a className=" text-red-500 text-lg md:text-2xl lg:text-3xl font-bold">ARTISAN's FORGE</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="gap-4  menu-horizontal px-1">
                     {links}
                 </ul>
             </div>
