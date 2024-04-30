@@ -7,9 +7,9 @@ const Subcategory = () => {
     console.log(data)
     return (
         <div className=' mt-16'>
-            <h1 className=' text-5xl font-bold text-center space-y-2'>SUBCATEGORY : <span className=' text-red-500'>{subcategory.toUpperCase()}</span></h1>
-            <p className=' text-center text-xl font-semibold pt-4'>{data.length} items available for this category</p>
-            <div className='mt-14 grid grid-cols-3 gap-5 place-items-center '>
+            <h1 className=' text-2xl md:text-3xl lg:text-5xl font-bold text-center space-y-2'>SUBCATEGORY : <span className=' text-red-500'>{subcategory.toUpperCase()}</span></h1>
+            <p className=' text-center text-sm md:text-lg lg:text-xl font-semibold pt-4'>{data.length} items available for this category</p>
+            <div className='mt-14 grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-5 place-items-center pb-10'>
                 {
                     data.map((sub, idx) =>
                         <div key={idx} className=" dark:text-black dark:text-opacity-75 card w-96 bg-base-100 shadow-xl rounded-none">

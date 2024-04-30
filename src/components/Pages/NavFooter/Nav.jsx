@@ -38,11 +38,11 @@ const Nav = () => {
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3  p-2 z-10 shadow bg-base-100 rounded-box w-52">
                         {links}
                     </ul>
                 </div>
-                <a className=" text-red-500 text-3xl font-bold">ARTISAN's FORGE</a>
+                <a className=" text-red-500 text-lg md:text-2xl lg:text-3xl font-bold">ARTISAN's FORGE</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -50,9 +50,9 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div onClick={handleTheme} className='lg:pr-3'>
+                <div onClick={handleTheme} className='pr-4 lg:pr-4'>
                     {
-                        theme === 'light' ? <MdDarkMode className=' h-8 w-8 duration-300 delay-700 ease-in-out' /> : <MdOutlineLightMode className=' h-8 w-8' />
+                        theme === 'light' ? <MdDarkMode className=' h-6 w-6 lg:h-8 lg:w-8 duration-300 delay-700 ease-in-out' /> : <MdOutlineLightMode className=' h-6 w-6 lg:h-8 lg:w-8' />
                     }
                 </div>
                 {user ?
@@ -66,8 +66,8 @@ const Nav = () => {
                     </div>
                     :
                     <div className=' flex gap-2'>
-                        <NavLink className={'btn'} to={'/login'}>Login</NavLink>
-                        <NavLink className={'btn'} to={'/register'}>Register</NavLink>
+                        <NavLink className={'btn rounded-none bg-red-400 text-white hover:bg-transparent hover:border-2 hover:border-red-400 hover:text-red-400'} to={'/login'}>Login</NavLink>
+                        <NavLink className={'btn rounded-none bg-red-400 text-white hover:bg-transparent hover:border-2 hover:border-red-400 hover:text-red-400'} to={'/register'}>Register</NavLink>
                     </div>}
             </div>
         </div>
